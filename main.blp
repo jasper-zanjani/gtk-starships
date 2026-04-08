@@ -11,6 +11,7 @@ Adw.ApplicationWindow main {
       }
     }
     Adw.OverlaySplitView splitview {
+      show-sidebar: false;
       sidebar: Adw.StatusPage {
         title: _("Sidebar");
       };
@@ -18,10 +19,27 @@ Adw.ApplicationWindow main {
         title: _("Content");
 
         Adw.Clamp {
-          maximum-size: 640;
+          maximum-size: 1000;
 
           Box {
             orientation: vertical;
+            Box {
+              orientation: horizontal;
+            
+              Scale ship_number {
+                width-request: 200;
+                digits: 0;
+                draw-value: true;
+                adjustment: Adjustment {
+                  lower: 10;
+                  upper: 100;
+                  value: 30;
+                };
+              }
+              Button button {
+                icon-name: "view-refresh";
+              }
+            }
             Box {
               orientation: horizontal;
               GridView gridview {}
@@ -32,6 +50,6 @@ Adw.ApplicationWindow main {
     }
   }
   title: _("Starships");
-  default-height: 480;
-  default-width: 640;
+  default-width: 800;
+  default-height: 600;
 }
