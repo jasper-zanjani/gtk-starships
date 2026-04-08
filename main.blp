@@ -1,0 +1,37 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ApplicationWindow main {
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      ToggleButton show-sidebar {
+        icon-name: "sidebar-show-symbolic";
+        active: bind splitview.show-sidebar bidirectional;
+      }
+    }
+    Adw.OverlaySplitView splitview {
+      sidebar: Adw.StatusPage {
+        title: _("Sidebar");
+      };
+      content: Adw.StatusPage {
+        title: _("Content");
+
+        Adw.Clamp {
+          maximum-size: 640;
+
+          Box {
+            orientation: vertical;
+            Box {
+              orientation: horizontal;
+              GridView gridview {}
+            }
+          }
+        }
+      };
+    }
+  }
+  title: _("Starships");
+  default-height: 480;
+  default-width: 640;
+}
